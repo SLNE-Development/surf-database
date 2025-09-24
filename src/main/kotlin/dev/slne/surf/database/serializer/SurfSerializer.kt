@@ -1,20 +1,22 @@
 package dev.slne.surf.database.serializer
 
-import dev.slne.surf.database.example.RedisExample2Packet
-import dev.slne.surf.database.example.RedisExamplePacket
-import dev.slne.surf.database.redis.packet.RedisPacket
+import dev.slne.surf.database.serializer.serializers.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.modules.polymorphic
-import kotlinx.serialization.modules.subclass
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.ShadowColor
+import net.kyori.adventure.text.format.TextColor
+import java.time.ZonedDateTime
+import java.util.*
 
 object SurfSerializer {
 
     private val baseModule = SerializersModule {
-        polymorphic(RedisPacket::class) {
-            subclass(RedisExamplePacket::class)
-            subclass(RedisExample2Packet::class)
-        }
+        contextual(TextColor::class, TextColorSerializer)
+        contextual(ShadowColor::class, ShadowColorSerializer)
+        contextual(Component::class, ComponentSerializer)
+        contextual(ZonedDateTime::class, ZonedDateTimeSerializer)
+        contextual(UUID::class, UuidSerializer)
     }
 
     private val externalModules = mutableSetOf<SerializersModule>()
