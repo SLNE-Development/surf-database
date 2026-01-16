@@ -1,12 +1,13 @@
 rootProject.name = "surf-database"
 
-buildscript {
+pluginManagement {
     repositories {
         gradlePluginPortal()
         maven("https://repo.slne.dev/repository/maven-public/") { name = "maven-public" }
     }
-    dependencies {
-        classpath("dev.slne.surf:surf-api-gradle-plugin:1.21.11+")
+    plugins {
+        id("dev.slne.surf.surf-api-gradle-plugin") version "1.21.11+"
+        id("dev.slne.surf.surfapi.gradle.core") version "1.21.11+"
     }
 }
 
