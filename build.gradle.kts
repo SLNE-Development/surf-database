@@ -1,4 +1,5 @@
 import dev.slne.surf.surfapi.gradle.util.slneReleases
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("dev.slne.surf.surfapi.gradle.core")
@@ -22,6 +23,9 @@ dependencies {
 }
 
 kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_25)
+    }
     jvmToolchain(25)
 }
 
