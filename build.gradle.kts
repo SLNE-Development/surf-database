@@ -21,6 +21,10 @@ dependencies {
     runtimeOnly(libs.mariadb)
 }
 
+kotlin {
+    jvmToolchain(25)
+}
+
 publishing {
     repositories {
         slneReleases()
