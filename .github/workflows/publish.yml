@@ -12,6 +12,7 @@ env:
   SLNE_RELEASES_REPO_USERNAME: ${{ secrets.SLNE_RELEASES_REPO_USERNAME }}
   SLNE_RELEASES_REPO_PASSWORD: ${{ secrets.SLNE_RELEASES_REPO_PASSWORD }}
   MODULE_REGEX: "surf-database.*-all\\.jar$"
+  JVM_TARGET: "25"
 
 jobs:
   build:
@@ -39,16 +40,16 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'graalvm'
-          java-version: '25'
+          java-version: ${{ env.JVM_TARGET }}
 
       - name: Build all modules with Gradle
-        run: ./gradlew build shadowJar --parallel --no-scan
+        run: ./gradlew build shadowJar --parallel --no-scan -jvm-target ${{ env.JVM_TARGET }}
 
       - name: Check all modules with Gradle
-        run: ./gradlew check --parallel --no-scan
+        run: ./gradlew check --parallel --no-scan -jvm-target ${{ env.JVM_TARGET }}
 
       - name: Publish all modules to Maven
-        run: ./gradlew publish --parallel --no-scan
+        run: ./gradlew publish --parallel --no-scan -jvm-target ${{ env.JVM_TARGET }}
 
       - name: Extract Project Version
         id: get_version
