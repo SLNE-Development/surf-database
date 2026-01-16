@@ -21,6 +21,10 @@ dependencies {
     runtimeOnly(libs.mariadb)
 }
 
+kotlin {
+    jvmToolchain(25)
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(25))
