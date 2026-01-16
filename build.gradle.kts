@@ -21,6 +21,12 @@ dependencies {
     runtimeOnly(libs.mariadb)
 }
 
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(25))
+    }
+}
+
 publishing {
     repositories {
         slneReleases()
