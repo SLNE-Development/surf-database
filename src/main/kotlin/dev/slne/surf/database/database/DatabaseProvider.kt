@@ -109,7 +109,7 @@ class DatabaseProvider internal constructor(
         }
 
         dataSource = HikariDataSource(hikariConfig)
-        connection = Database.Companion.connect(dataSource!!)
+        connection = Database.connect(dataSource!!)
     }
 
     fun disconnect() {
