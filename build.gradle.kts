@@ -1,5 +1,4 @@
 import dev.slne.surf.surfapi.gradle.util.slneReleases
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("dev.slne.surf.surfapi.gradle.core")
@@ -20,13 +19,6 @@ dependencies {
 
     runtimeOnly(libs.sqlite)
     runtimeOnly(libs.mariadb)
-}
-
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_25)
-    }
-    jvmToolchain(25)
 }
 
 publishing {
